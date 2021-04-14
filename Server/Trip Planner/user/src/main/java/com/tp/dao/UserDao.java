@@ -42,6 +42,16 @@ public class UserDao implements Serializable {
             throw re;
         }
     }
+    public String findmaxId() {
+        try {
+            Criteria criteria=new Criteria();
+            Query query=new Query(criteria);
+            String id=Long.toString(mongoTemplate.count(query,"User"));
+            return id;
+        } catch (RuntimeException re) {
+            throw re;
+        }
+    }
     public List findByName(String name) {
         try {
             Query query=new Query(Criteria.where("name").is(name));
